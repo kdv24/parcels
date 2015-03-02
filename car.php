@@ -8,13 +8,13 @@
         private $img;
         private $mileage;
 
-        function __construct($make, $price, $year, $img, $max_mileage)
+        function __construct($make, $price, $year, $img, $mileage)
         {
             $this->make = $make;
             $this->price = $price;
             $this->year = $year;
             $this->img = $img;
-            $this->max_mileage = $max_mileage;
+            $this->mileage = $mileage;
         }
 
         function getMake()
@@ -34,6 +34,10 @@
         function getImg()
         {
             return $this->img;
+        }
+        function getMileage()
+        {
+            return $this->mileage;
         }
 
         function setMake($new_make)
@@ -57,10 +61,28 @@
 
     }
 
-    $car1 = new Car("Honda Civic", 2000, 1980, "img/honda.jpg");
-    $car2 = new Car("Volks Beetle", 1999, 1980, "img/bug.jpg");
+    $car1 = new Car("Honda Civic", 2000, 1980, "img/honda.jpg", 12345);
+    $car2 = new Car("Volks Beetle", 1000, 1980, "img/bug.jpg", 5456);
 
     $cars=array($car1, $car2);
+    $cars_matching = array();
+
+    $max_price = $_GET["max_price"];
+    $max_mileage = $_GET["max_mileage"];
+
+
+
+    foreach ($cars as $car)
+    {
+        if ($car->getPrice() < $max_price)
+        {
+            if ($car->getMileage() < $max_mileage)
+            {
+                array_push($cars_matching, $car);
+            }
+        }
+    }
+
 
 
 
@@ -74,31 +96,18 @@
 </head>
     <body>
         <h1>Objects</h1>
-
-<?php
-
-        $max_price = $_GET["max_price"];
-        $max_mileage = $_GET["mileage"];
-
-        foreach ($cars as $car)
-            {
-                $carimg = $car->getImg();
-                echo $car->getMake();
-                echo $car->getPrice();
-                $car->setMake($_GET["make"]);
-                $car->setPrice($_GET["price"]);
+        <?php
+            echo "<ul>";
+                foreach($cars_matching as $car)
+                {
+                    echo "<li>" . $car->getMake() . "</li>";
+                    echo "<li>" . $car->getPrice() . "</li>";
+                    echo "<img src=" . $car->getImg() . "/>";
+                }
+            echo "</ul>";
+        ?>
 
 
-
-
-
-
-
-                echo "<img src =$carimg>";
-
-
-            }
-?>
 
     </body>
 </html>
