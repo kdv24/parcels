@@ -98,6 +98,10 @@
         <h1>Objects</h1>
         <?php
             echo "<ul>";
+            if(empty($cars_matching)) {
+                echo "This array is empty";
+            }
+            else {
                 foreach($cars_matching as $car)
                 {
                     echo "<li>" . $car->getMake() . "</li>";
@@ -105,6 +109,7 @@
                     echo "<img src=" . $car->getImg() . "/>";
                 }
             echo "</ul>";
+                }
         ?>
 
 
