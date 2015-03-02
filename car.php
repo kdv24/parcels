@@ -6,13 +6,15 @@
         private $price;
         private $year;
         private $img;
+        private $mileage;
 
-        function __construct($make, $price, $year, $img)
+        function __construct($make, $price, $year, $img, $max_mileage)
         {
             $this->make = $make;
             $this->price = $price;
             $this->year = $year;
             $this->img = $img;
+            $this->max_mileage = $max_mileage;
         }
 
         function getMake()
@@ -56,9 +58,10 @@
     }
 
     $car1 = new Car("Honda Civic", 2000, 1980, "img/honda.jpg");
-    $car2 = new Car("Volks Beetle", 1999, 1980, "img/honda.jpg");
+    $car2 = new Car("Volks Beetle", 1999, 1980, "img/bug.jpg");
 
     $cars=array($car1, $car2);
+
 
 
 
@@ -73,13 +76,25 @@
         <h1>Objects</h1>
 
 <?php
+
+        $max_price = $_GET["max_price"];
+        $max_mileage = $_GET["mileage"];
+
         foreach ($cars as $car)
             {
-                echo $car1->getMake();
-                echo $car1->getPrice();
-                $car1->setMake("BMW");
-                echo $car1->getMake();
-                echo "<img src =" . $car1->getImg() . ">";
+                $carimg = $car->getImg();
+                echo $car->getMake();
+                echo $car->getPrice();
+                $car->setMake($_GET["make"]);
+                $car->setPrice($_GET["price"]);
+
+
+
+
+
+
+
+                echo "<img src =$carimg>";
 
 
             }
