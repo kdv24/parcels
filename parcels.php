@@ -77,12 +77,14 @@ $parcel3 = new Parcel($given_height, $given_length, $given_depth, $given_weight)
     <p><?php
     if ($given_weight && $given_height && $given_length && $given_depth)
     {
-    echo $parcel3->getWeight();
-    echo $parcel3->getHeight();
-    echo $parcel3->getLength();
-    echo $parcel3->getDepth();
+    echo "<ul>";
+    echo "<li>" . $parcel3->getWeight() . "</li>";
+    echo "<li>" . $parcel3->getHeight() . "</li>";
+    echo "<li>" . $parcel3->getLength() . "</li>";
+    echo "<li>" . $parcel3->getDepth() . "</li>";
+    echo "</ul>";
     $volume3 = $parcel3->volume($parcel3->getHeight(), $parcel3->getLength(), $parcel3->getDepth());
-    echo $volume3;
+    echo "Volume =" . $volume3;
 
     }
     else
