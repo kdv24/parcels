@@ -48,10 +48,13 @@
         }
         function volume($height, $length, $depth)
         {
-             return ($this->height * $this->length * $this->depth);
+              return ($this->height * $this->length * $this->depth);
         }
 
-
+        function shipping($weight, $length)
+        {
+            return ($this->weight * $this->length);
+        }
     }
 
 $parcel1 = new Parcel(10.7, 4, 3, 4);
@@ -78,13 +81,14 @@ $parcel3 = new Parcel($given_height, $given_length, $given_depth, $given_weight)
     if ($given_weight && $given_height && $given_length && $given_depth)
     {
     echo "<ul>";
-    echo "<li>" . $parcel3->getWeight() . "</li>";
-    echo "<li>" . $parcel3->getHeight() . "</li>";
-    echo "<li>" . $parcel3->getLength() . "</li>";
-    echo "<li>" . $parcel3->getDepth() . "</li>";
+    echo "<li> Weight: " . $parcel3->getWeight() . "</li>";
+    echo "<li> Height: " . $parcel3->getHeight() . "</li>";
+    echo "<li> Length: " . $parcel3->getLength() . "</li>";
+    echo "<li> Depth: " . $parcel3->getDepth() . "</li>";
     echo "</ul>";
-    $volume3 = $parcel3->volume($parcel3->getHeight(), $parcel3->getLength(), $parcel3->getDepth());
-    echo "Volume =" . $volume3;
+    echo $parcel3->volume($parcel3->getHeight(), $parcel3->getLength(), $parcel3->getDepth());
+    echo $parcel3->shipping($parcel3->getWeight(), $parcel3->getLength());
+    
 
     }
     else
