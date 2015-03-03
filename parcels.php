@@ -6,7 +6,7 @@
         private $length;
         private $depth;
 
-        function __construct($weight, $height, $length, $depth)
+        function __construct($height, $length, $depth, $weight)
         {
             $this->weight = $weight;
             $this->height = $height;
@@ -46,9 +46,9 @@
         {
             $this->depth=$new_depth;
         }
-        function volume($length, $height, $depth)
+        function volume($height, $length, $depth)
         {
-             return ($this->length * $this->height * $this->depth);
+             return ($this->height * $this->length * $this->depth);
         }
 
 
@@ -63,7 +63,7 @@ $given_length = $_GET["length"];
 $given_depth = $_GET["depth"];
 
 
-$parcel3 = new Parcel($given_weight, $given_height, $given_length, $given_depth);
+$parcel3 = new Parcel($given_height, $given_length, $given_depth, $given_weight);
 
 
 ?>
@@ -75,13 +75,14 @@ $parcel3 = new Parcel($given_weight, $given_height, $given_length, $given_depth)
 </head>
 <body>
     <p><?php
-    if ($given_weight)
+    if ($given_weight && $given_height && $given_length && $given_depth)
     {
     echo $parcel3->getWeight();
     echo $parcel3->getHeight();
     echo $parcel3->getLength();
     echo $parcel3->getDepth();
-    
+    $volume3 = $parcel3->volume($parcel3->getHeight(), $parcel3->getLength(), $parcel3->getDepth());
+    echo $volume3;
 
     }
     else
